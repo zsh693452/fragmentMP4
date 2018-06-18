@@ -1,0 +1,93 @@
+﻿Build started 2018/6/18 16:58:01.
+     1>Project "E:\mp4lib\mp4\mp4\mp4.vcxproj" on node 2 (rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\mp4.lastbuildstate".
+       InitializeBuildStatus:
+         Creating "Debug\mp4.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt box\avc1.cpp box\avcC.cpp box\box.cpp box\dinf.cpp box\dref.cpp box\ftyp.cpp box\hdlr.cpp box\mdat.cpp box\mdhd.cpp box\mdia.cpp box\mfhd.cpp box\minf.cpp box\moof.cpp box\moov.cpp box\mvhd.cpp box\root.cpp box\stbl.cpp box\stco.cpp box\stsc.cpp box\stsd.cpp box\stsz.cpp box\stts.cpp box\tfdt.cpp box\tfhd.cpp box\tkhd.cpp box\traf.cpp box\trak.cpp box\turn.cpp box\url.cpp box\vmhd.cpp memory\memory.cpp mp4.cpp mp4Creator.cpp unit\unit.cpp
+         unit.cpp
+         mp4Creator.cpp
+         mp4.cpp
+         memory.cpp
+         vmhd.cpp
+         url.cpp
+         turn.cpp
+         trak.cpp
+         traf.cpp
+         tkhd.cpp
+         tfhd.cpp
+         tfdt.cpp
+         stts.cpp
+         stsz.cpp
+         stsd.cpp
+         stsc.cpp
+         stco.cpp
+         stbl.cpp
+         root.cpp
+         mvhd.cpp
+         Generating Code...
+         Compiling...
+         moov.cpp
+         moof.cpp
+         minf.cpp
+         mfhd.cpp
+         mdia.cpp
+         mdhd.cpp
+         mdat.cpp
+         hdlr.cpp
+         ftyp.cpp
+         dref.cpp
+         dinf.cpp
+         box.cpp
+         avcC.cpp
+         avc1.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\Lib.exe /OUT:"E:\mp4lib\mp4\Debug\mp4.lib" /NOLOGO Debug\avc1.obj
+         Debug\avcC.obj
+         Debug\box.obj
+         Debug\dinf.obj
+         Debug\dref.obj
+         Debug\ftyp.obj
+         Debug\hdlr.obj
+         Debug\mdat.obj
+         Debug\mdhd.obj
+         Debug\mdia.obj
+         Debug\mfhd.obj
+         Debug\minf.obj
+         Debug\moof.obj
+         Debug\moov.obj
+         Debug\mvhd.obj
+         Debug\root.obj
+         Debug\stbl.obj
+         Debug\stco.obj
+         Debug\stsc.obj
+         Debug\stsd.obj
+         Debug\stsz.obj
+         Debug\stts.obj
+         Debug\tfdt.obj
+         Debug\tfhd.obj
+         Debug\tkhd.obj
+         Debug\traf.obj
+         Debug\trak.obj
+         Debug\turn.obj
+         Debug\url.obj
+         Debug\vmhd.obj
+         Debug\memory.obj
+         Debug\mp4.obj
+         Debug\mp4Creator.obj
+         Debug\unit.obj
+         mp4.vcxproj -> E:\mp4lib\mp4\Debug\mp4.lib
+       PostBuildEvent:
+         copy E:\mp4lib\mp4\Debug\mp4.lib E:\mp4lib\mp4\\lib\mp4.lib
+         :VCEnd
+         已复制         1 个文件。
+       FinalizeBuildStatus:
+         Deleting file "Debug\mp4.unsuccessfulbuild".
+         Touching "Debug\mp4.lastbuildstate".
+     1>Done Building Project "E:\mp4lib\mp4\mp4\mp4.vcxproj" (rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.44

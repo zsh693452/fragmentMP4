@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B2030754-BA45-4C1E-83D5-06D9E865DF28}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>mp4</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(SolutionDir)$(Configuration)\mp4.lib $(SolutionDir)\lib\mp4.lib</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="box\avc1.cpp" />
+    <ClCompile Include="box\avcC.cpp" />
+    <ClCompile Include="box\box.cpp" />
+    <ClCompile Include="box\dinf.cpp" />
+    <ClCompile Include="box\dref.cpp" />
+    <ClCompile Include="box\ftyp.cpp" />
+    <ClCompile Include="box\hdlr.cpp" />
+    <ClCompile Include="box\mdat.cpp" />
+    <ClCompile Include="box\mdhd.cpp" />
+    <ClCompile Include="box\mdia.cpp" />
+    <ClCompile Include="box\mfhd.cpp" />
+    <ClCompile Include="box\minf.cpp" />
+    <ClCompile Include="box\moof.cpp" />
+    <ClCompile Include="box\moov.cpp" />
+    <ClCompile Include="box\mvhd.cpp" />
+    <ClCompile Include="box\root.cpp" />
+    <ClCompile Include="box\stbl.cpp" />
+    <ClCompile Include="box\stco.cpp" />
+    <ClCompile Include="box\stsc.cpp" />
+    <ClCompile Include="box\stsd.cpp" />
+    <ClCompile Include="box\stsz.cpp" />
+    <ClCompile Include="box\stts.cpp" />
+    <ClCompile Include="box\tfdt.cpp" />
+    <ClCompile Include="box\tfhd.cpp" />
+    <ClCompile Include="box\tkhd.cpp" />
+    <ClCompile Include="box\traf.cpp" />
+    <ClCompile Include="box\trak.cpp" />
+    <ClCompile Include="box\turn.cpp" />
+    <ClCompile Include="box\url.cpp" />
+    <ClCompile Include="box\vmhd.cpp" />
+    <ClCompile Include="memory\memory.cpp" />
+    <ClCompile Include="mp4.cpp" />
+    <ClCompile Include="mp4Creator.cpp" />
+    <ClCompile Include="unit\unit.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="baseDef\baseType.h" />
+    <ClInclude Include="box\avc1.h" />
+    <ClInclude Include="box\avcC.h" />
+    <ClInclude Include="box\box.h" />
+    <ClInclude Include="box\dinf.h" />
+    <ClInclude Include="box\dref.h" />
+    <ClInclude Include="box\ftyp.h" />
+    <ClInclude Include="box\hdlr.h" />
+    <ClInclude Include="box\mdat.h" />
+    <ClInclude Include="box\mdhd.h" />
+    <ClInclude Include="box\mdia.h" />
+    <ClInclude Include="box\mfhd.h" />
+    <ClInclude Include="box\minf.h" />
+    <ClInclude Include="box\moof.h" />
+    <ClInclude Include="box\moov.h" />
+    <ClInclude Include="box\mvhd.h" />
+    <ClInclude Include="box\root.h" />
+    <ClInclude Include="box\stbl.h" />
+    <ClInclude Include="box\stco.h" />
+    <ClInclude Include="box\stsc.h" />
+    <ClInclude Include="box\stsd.h" />
+    <ClInclude Include="box\stsz.h" />
+    <ClInclude Include="box\stts.h" />
+    <ClInclude Include="box\tfdt.h" />
+    <ClInclude Include="box\tfhd.h" />
+    <ClInclude Include="box\tkhd.h" />
+    <ClInclude Include="box\traf.h" />
+    <ClInclude Include="box\trak.h" />
+    <ClInclude Include="box\turn.h" />
+    <ClInclude Include="box\url.h" />
+    <ClInclude Include="box\vmhd.h" />
+    <ClInclude Include="memory\memory.h" />
+    <ClInclude Include="mp4.h" />
+    <ClInclude Include="mp4Creator.h" />
+    <ClInclude Include="unit\unit.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

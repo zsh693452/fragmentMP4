@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\memory">
+      <UniqueIdentifier>{00dc92dc-bf4e-41bb-9545-86117ba96191}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\box">
+      <UniqueIdentifier>{820ca827-97a3-4874-89a5-eab997081e9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\baseDef">
+      <UniqueIdentifier>{71c01227-d516-4a49-9c20-2cb0f76000a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\unit">
+      <UniqueIdentifier>{43149637-2577-4d11-a0e7-35e6b38bf829}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="memory\memory.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="box\box.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\ftyp.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="unit\unit.cpp">
+      <Filter>Source Files\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="mp4Creator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mp4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="box\moov.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\root.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\moof.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\mdat.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\mvhd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\trak.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\tkhd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\mdia.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\mdhd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\hdlr.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\minf.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\vmhd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\dinf.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\dref.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\url.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\stbl.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\stsd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\avc1.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\avcC.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\stts.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\stsc.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\stsz.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\stco.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\mfhd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\traf.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\tfhd.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\tfdt.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+    <ClCompile Include="box\turn.cpp">
+      <Filter>Source Files\box</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="memory\memory.h">
+      <Filter>Source Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="box\box.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\ftyp.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="baseDef\baseType.h">
+      <Filter>Source Files\baseDef</Filter>
+    </ClInclude>
+    <ClInclude Include="unit\unit.h">
+      <Filter>Source Files\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="mp4Creator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mp4.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="box\moov.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\root.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\moof.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\mdat.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\mvhd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\trak.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\tkhd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\mdia.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\mdhd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\hdlr.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\minf.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\vmhd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\dinf.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\dref.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\url.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\stbl.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\stsd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\avc1.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\avcC.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\stts.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\stsc.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\stsz.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\stco.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\mfhd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\traf.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\tfhd.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\tfdt.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+    <ClInclude Include="box\turn.h">
+      <Filter>Source Files\box</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
