@@ -39,6 +39,8 @@ public:
 	~CFMP4Creator();
 
 	void * Create();
+	void SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize, char *VPS, int iVPSSize, int w, int h);
+	void SetVideoData(char *data, int iDataSize);
 	void * GetContext(int *iOutSize);
 	int GetContextSize();
 
@@ -46,7 +48,7 @@ protected:
 	CBox * ftyp_box();
 	CBox * moov_box();
 	CBox * moof_box();
-	CBox * mdat_box();
+	CBox * mdat_box(char *data, int iSize);
 	CBox * mvhd_box();
 	CBox * trak_box();
 	CBox * tkhd_box(int trakId, bool audioTrak, int w, int h);
@@ -74,6 +76,9 @@ protected:
 
 private:
 	CBox *m_root;
+	CBox *m_moov;
+	CBox *m_moof;
+
 	unsigned char *m_pContext;
 	int m_iContextSize;
 };

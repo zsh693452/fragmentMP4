@@ -11,12 +11,26 @@ void *FMP4_Create()
 
 void FMP4_Release(void *hMP4)
 {
-	if (hMP4 != NULL)
+	CFMP4Creator *creator = (CFMP4Creator *)hMP4;
+	if (creator != NULL)
 	{
-		delete hMP4;
-		hMP4 = NULL;
+		delete creator;
+		creator = NULL;
 	}
 }
+
+void FMP4_SetMetaData(void *hMP4, char *sps, int iSizeOfSps, char *pps, int iSizeOfPps, char *vps, int iSizeOfVps, int w, int h)
+{
+	CFMP4Creator *creator = (CFMP4Creator *)hMP4;
+	creator->SetMetaData(sps, iSizeOfSps, pps, iSizeOfPps, vps, iSizeOfVps, w, h);
+}
+
+void FMP4_SetVideoData(void *hMP4, char *mediaData, int iLen)
+{
+	CFMP4Creator *creator = (CFMP4Creator *)hMP4;
+	creator->SetVideoData(mediaData, iLen);
+}
+
 
 unsigned char *FMP4_GetData(void *hMP4, int *iOutSize)
 {

@@ -19,6 +19,7 @@ void * CFMP4Creator::Create()
 	CBox *ftyp = ftyp_box();
 	m_root->AddChild(ftyp);
 
+	/*
 	// moov.mvhd
 	CBox *mvhd = mvhd_box();
 	CBox *moov = moov_box();
@@ -129,9 +130,98 @@ void * CFMP4Creator::Create()
 	delete traf;
 	delete tfhd;
 	delete tfdt;
-
+	*/
 
 	return (void *)m_root;
+}
+
+void CFMP4Creator::SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize, char *VPS, int iVPSSize, int w, int h)
+{
+	m_moov = moov_box();
+	CBox *mvhd = mvhd_box();
+	m_moov->AddChild(mvhd);
+
+	// moov.trak
+	CBox *trak = trak_box();
+	// moov.trak.tkhd
+	CBox *tkhd = tkhd_box(1, false, w, h);
+	trak->AddChild(tkhd);
+
+	// moov.trak.mdia
+	CBox *mdia = mdia_box();
+	// moov.trak.mdia.mdhd
+	CBox *mdhd = mdhd_box();
+	mdia->AddChild(mdhd);
+	// moov.trak.mdia.hdlr
+	CBox *hdlr = hdlr_box("video", "123", 3);
+	mdia->AddChild(hdlr);
+	// moov.trak.mdia.minf
+	CBox *minf = minf_box();
+	// moov.trak.mdia.minf.vmhd
+	CBox *vmhd = vmhd_box();
+	minf->AddChild(vmhd);
+	// moov.trak.mdia.minf.dinf
+	CBox *dinf = dinf_box();
+	// moov.trak.mdia.minf.dinf.dref
+	CBox *dref = dref_box(1);
+	// moov.trak.mdia.minf.dinf.dref.url
+	CBox *url = url_box(NULL, 0);
+	dref->AddChild(url);
+	dinf->AddChild(dref);
+	minf->AddChild(dinf);
+	// moov.trak.mdia.minf.stbl
+	CBox *stbl = stbl_box();
+	// moov.trak.mdia.minf.stbl.stsd
+	CBox *stsd = stsd_box(1);
+	// moov.trak.mdia.minf.stbl.stsd.avc1
+	CBox *avc1 = avc1_box(w, h);
+	// moov.trak.mdia.minf.stbl.stsd.avc1.avcC
+	CBox *avcC = avcC_box(SPS, iSPSSize, PPS, iPPSSize);
+	avc1->AddChild(avcC);
+	stsd->AddChild(avc1);
+	stbl->AddChild(stsd);
+	// moov.trak.mdia.minf.stbl.stts
+	CBox *stts = stts_box();
+	stbl->AddChild(stts);
+	// moov.trak.mdia.minf.stbl.stsc
+	CBox *stsc = stsc_box();
+	stbl->AddChild(stsc);
+	// moov.trak.mdia.minf.stbl.stsz
+	CBox *stsz = stsz_box();
+	stbl->AddChild(stsz);
+	// moov.trak.mdia.minf.stbl.stco
+	CBox *stco = stco_box();
+	stbl->AddChild(stco);
+	mdia->AddChild(minf);
+	trak->AddChild(mdia);
+	m_moov->AddChild(trak);	
+	m_root->AddChild(m_moov);
+}
+
+void CFMP4Creator::SetVideoData(char *data, int iDataSize)
+{
+	// moof
+	m_moof = moof_box();
+	// moof.mfhd
+	CBox *mfhd = mfhd_box();
+	m_moof->AddChild(mfhd);
+	// moof.traf
+	CBox *traf = traf_box();
+	// moof.traf.tfhd
+	CBox *tfhd = tfhd_box(1, 0, 0, 0, 0, 0); // fake data
+	traf->AddChild(tfhd);
+	// moof.traf.tfdt
+	CBox *tfdt = tfdt_box(0); // fake data
+	traf->AddChild(tfdt);
+	// moof.traf.trun
+	CBox *trun = trun_box();
+	traf->AddChild(trun);
+	m_moof->AddChild(traf);
+	m_root->AddChild(m_moof);
+
+	// mdat
+	CBox *mdat = mdat_box(data, iDataSize);
+	m_root->AddChild(mdat);
 }
 
 void *CFMP4Creator::GetContext(int *outSize)
@@ -172,9 +262,10 @@ CBox *CFMP4Creator::moof_box()
 	return moof;
 }
 
-CBox * CFMP4Creator::mdat_box()
+CBox * CFMP4Creator::mdat_box(char *data, int iSize)
 {
 	CMdatBox *mdat = new CMdatBox();
+	mdat->SetData((unsigned char *)data, iSize);
 	return mdat;
 }
 
