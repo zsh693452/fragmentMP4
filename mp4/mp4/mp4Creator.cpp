@@ -153,7 +153,8 @@ void CFMP4Creator::SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize,
 	CBox *mdhd = mdhd_box();
 	mdia->AddChild(mdhd);
 	// moov.trak.mdia.hdlr
-	CBox *hdlr = hdlr_box("video", "123", 3);
+	char szVideoHandlerName[128] = "Bento4 Video Handler";
+	CBox *hdlr = hdlr_box("video", szVideoHandlerName, strlen(szVideoHandlerName) + 1);
 	mdia->AddChild(hdlr);
 	// moov.trak.mdia.minf
 	CBox *minf = minf_box();
@@ -193,6 +194,7 @@ void CFMP4Creator::SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize,
 	CBox *stco = stco_box();
 	stbl->AddChild(stco);
 	mdia->AddChild(minf);
+	mdia->AddChild(stbl);
 	trak->AddChild(mdia);
 	m_moov->AddChild(trak);	
 	m_root->AddChild(m_moov);
@@ -240,11 +242,11 @@ int CFMP4Creator::GetContextSize()
 CBox * CFMP4Creator::ftyp_box()
 {
 	CFtypBox *ftyp = new CFtypBox();
-	Uint8 brand[4] = {'i', 's', 'o', 'm'};
+	Uint8 brand[4] = {'m', 'p', '4', '2'};
 	Uint8 version[4] = {0x00, 0x00, 0x00, 0x01};
 	ftyp->SetMajorBrand(brand);
 	ftyp->SetMinorVersion(version);
-	Uint8 *brands = (Uint8 *)"iosmiso5";
+	Uint8 *brands = (Uint8 *)"mp42avc1iso5";
 	ftyp->SetCompatibleBrands(brands, strlen((const char *)brands));
 
 	return ftyp;
@@ -391,7 +393,11 @@ CBox * CFMP4Creator::dinf_box()
 
 CBox * CFMP4Creator::dref_box(int entryCount)
 {
+	Uint8 flag[3] = {0};
+
 	CDrefBox * dref = new CDrefBox();
+	dref->SetVersion(0);
+	dref->SetFlag(flag);
 	dref->SetEntryCount(entryCount);
 	return dref;
 }
@@ -486,7 +492,7 @@ CBox * CFMP4Creator::stsc_box()
 
 	CStscBox *stsc = new CStscBox();
 	stsc->SetVersion(0);
-	stsc->SetFlag(0);
+	stsc->SetFlag(flag);
 	stsc->SetEntryCount(0);
 
 	return stsc;
@@ -544,10 +550,14 @@ CBox * CFMP4Creator::tfhd_box(Uint32 trackId, Uint64 baseDataOffset, Uint32 desI
 	tfhd->SetFlag(flag);
 	tfhd->SetTrackId(trackId);
 	tfhd->SetBaseDataOffset(baseDataOffset);
+	
+	// optional
+	/*
 	tfhd->SetSampleDescriptionIndex(desIndex);
 	tfhd->SetDefaultSampleDuration(sampleDuration);
 	tfhd->SetDefaultSampleSize(sampleSize);
 	tfhd->SetDefaultSampleFlag(sampleFlag);
+	*/
 
 	return tfhd;
 }

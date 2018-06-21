@@ -31,6 +31,8 @@ int _tmain(int argc, _TCHAR* argv[])
 {
 	int len = 0;
 	void *hmp4 = FMP4_Create();
+	FMP4_SetMetaData(hmp4, "123", 3, "123", 3, NULL, 0, 1920, 1080);
+	FMP4_SetVideoData(hmp4, "1234567890abcdefg", 17);
 	char *data = (char *)FMP4_GetData(hmp4, &len);
 	WriteFile(data, len);
 	FMP4_Release(hmp4);
