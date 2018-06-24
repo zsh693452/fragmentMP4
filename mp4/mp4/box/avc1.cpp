@@ -15,16 +15,28 @@ CAVC1Box::~CAVC1Box()
 
 }
 
+
+void CAVC1Box::SetReserved(Uint8 reserved[6])
+{
+	AddProperty("reserved", (char *)reserved, GetBoxSize(), 6);
+}
+
+void CAVC1Box::SetDataReferenceIndex(Uint16 index)
+{
+	Uint16 v = CUnit::Uint16Reverse(index);
+	AddProperty("data_reference_index", (char *)&v, GetBoxSize(), 2);
+}
+
 void CAVC1Box::SetPredefined(Uint16 predefined /* = 0 */)
 {
 	Uint16 v = CUnit::Uint16Reverse(predefined);
 	AddProperty("pre_defined", (char *)&v, GetBoxSize(), 2);
 }
 
-void CAVC1Box::SetReserved(Uint16 reserved /* = 0 */)
+void CAVC1Box::SetReserved2(Uint16 reserved /* = 0 */)
 {
 	Uint16 v = CUnit::Uint16Reverse(reserved);
-	AddProperty("reserved", (char *)&v, GetBoxSize(), 2);
+	AddProperty("reserved2", (char *)&v, GetBoxSize(), 2);
 }
 
 void CAVC1Box::SetPredefined2(Uint32 predefined[3])
@@ -33,7 +45,7 @@ void CAVC1Box::SetPredefined2(Uint32 predefined[3])
 	for (int i = 0; i < 3; i++)
 		v[i] = CUnit::Uint32Reverse(predefined[i]);
 
-	AddProperty("pre_defined2", (char *)&v, GetBoxSize(), 4);
+	AddProperty("pre_defined2", (char *)&v, GetBoxSize(), 12);
 }
 
 void CAVC1Box::SetWidth(Uint16 w)
@@ -60,16 +72,16 @@ void CAVC1Box::SetVertResolution(Uint32 vertRsln /* = 0x00480000 */)
 	AddProperty("vertresolution", (char *)&v, GetBoxSize(), 4);
 }
 
-void CAVC1Box::SetReserved2(Uint32 reserved /* = 0 */)
+void CAVC1Box::SetReserved3(Uint32 reserved /* = 0 */)
 {
 	Uint32 v = CUnit::Uint32Reverse(reserved);
-	AddProperty("reserved2", (char *)&reserved, GetBoxSize(), 4);
+	AddProperty("reserved3", (char *)&reserved, GetBoxSize(), 4);
 }
 
 void CAVC1Box::SetFrameCount(Uint16 frameCount /* = 1 */)
 {
-	Uint32 v = CUnit::Uint16Reverse(frameCount);
-	AddProperty("frame_count", (char *)&frameCount, GetBoxSize(), 2);
+	Uint16 v = CUnit::Uint16Reverse(frameCount);
+	AddProperty("frame_count", (char *)&v, GetBoxSize(), 2);
 }
 
 void CAVC1Box::SetCompressorName(Uint8 name[32])

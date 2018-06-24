@@ -16,12 +16,6 @@ CStsdBox::~CStsdBox()
 
 }
 
-void CStsdBox::SetIndex(Uint32 i)
-{
-	Uint32 v = CUnit::Uint32Reverse(i);
-	AddProperty("i", (char *)&v, GetBoxSize(), 4);
-}
-
 void CStsdBox::SetEntryCount(Uint32 count)
 {
 	Uint32 v = CUnit::Uint32Reverse(count);

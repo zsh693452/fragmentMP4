@@ -11,9 +11,6 @@ public:
 	
 	// entry count
 	void SetEntryCount(Uint32 count);
-
-	// i
-	void SetIndex(Uint32 i);
 };
 
 #endif

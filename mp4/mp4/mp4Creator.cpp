@@ -193,8 +193,8 @@ void CFMP4Creator::SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize,
 	// moov.trak.mdia.minf.stbl.stco
 	CBox *stco = stco_box();
 	stbl->AddChild(stco);
+	minf->AddChild(stbl);
 	mdia->AddChild(minf);
-	mdia->AddChild(stbl);
 	trak->AddChild(mdia);
 	m_moov->AddChild(trak);	
 	m_root->AddChild(m_moov);
@@ -427,7 +427,6 @@ CBox * CFMP4Creator::stsd_box(int entryCount)
 	CStsdBox *stsd = new CStsdBox();
 	stsd->SetVersion(0);
 	stsd->SetFlag(flag);
-	stsd->SetIndex(0);
 	stsd->SetEntryCount(entryCount);
 
 	return stsd;
@@ -437,16 +436,19 @@ CBox * CFMP4Creator::avc1_box(short w, short h)
 {
 	Uint32 predefined[3] = {0};
 	Uint8 szCompressorName[32] = {0};
+	Uint8 reserved[6] = {0};
 
 	CAVC1Box *avc1 = new CAVC1Box();
+	avc1->SetReserved(reserved);
+	avc1->SetDataReferenceIndex(0x01);
 	avc1->SetPredefined();
-	avc1->SetReserved();
+	avc1->SetReserved2();
 	avc1->SetPredefined2(predefined);
 	avc1->SetWidth(w);
 	avc1->SetHeight(h);
 	avc1->SetHorizResolution();
 	avc1->SetVertResolution();
-	avc1->SetReserved2();
+	avc1->SetReserved3();
 	avc1->SetFrameCount();
 	avc1->SetCompressorName(szCompressorName);
 	avc1->SetDepth();

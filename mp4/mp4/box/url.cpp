@@ -1,6 +1,6 @@
 #include "url.h"
 
-static const char *szUrlBox = "url";
+static const char *szUrlBox = "url ";
 
 CUrlBox::CUrlBox()
 {

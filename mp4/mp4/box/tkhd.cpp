@@ -99,12 +99,14 @@ void CTkhdBox::SetMatrix(Uint32 matrix[9])
 
 void CTkhdBox::SetWidth(Uint32 w)
 {
-	Uint32 v = CUnit::Uint32Reverse(w);
+	//Uint32 v = CUnit::Uint32Reverse(w);
+	Uint32 v = w;
 	AddProperty("width", (char *)&v, GetBoxSize(), 4);
 }
 
 void CTkhdBox::SetHeight(Uint32 h)
 {
-	Uint32 v = CUnit::Uint32Reverse(h);
+	//Uint32 v = CUnit::Uint32Reverse(h);
+	Uint32 v = h;
 	AddProperty("height", (char *)&v, GetBoxSize(), 4);
 }

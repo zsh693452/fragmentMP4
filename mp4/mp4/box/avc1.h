@@ -5,17 +5,29 @@
 
 // define at IOSIEC 14496-12
 // avc1 box is a SampleEntry
+// class VisualSampleEntry(codingname) extends SampleEntry (codingname)
+
 class CAVC1Box: public CBox
 {
 public:
 	CAVC1Box();
 	~CAVC1Box();
 
+	// ------- part of SampleEntry -------
+
+	// reserved 6bytes
+	void SetReserved(Uint8 reserved[6]);
+
+	// data_reference_idex
+	void SetDataReferenceIndex(Uint16 index);
+
+	// ------- part of VisualSampleEntry -------
+
 	// pre_defined 16bit;
 	void SetPredefined(Uint16 predefined = 0);
 
 	// reserved 16bit;
-	void SetReserved(Uint16 reserved = 0);
+	void SetReserved2(Uint16 reserved = 0);
 
 	// pre_defined array of uint32, size is 3
 	void SetPredefined2(Uint32 predefined[3]);
@@ -33,7 +45,7 @@ public:
 	void SetVertResolution(Uint32 vertRsln = 0x00480000);
 
 	// reserved 32bit
-	void SetReserved2(Uint32 reserved = 0);
+	void SetReserved3(Uint32 reserved = 0);
 
 	// frame count 16bit
 	void SetFrameCount(Uint16 frameCount = 1);
