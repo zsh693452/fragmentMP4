@@ -72,7 +72,7 @@ protected:
 	CBox * traf_box();
 	CBox * tfhd_box(Uint32 trackId, Uint64 baseDataOffset, Uint32 desIndex, Uint32 sampleDuration, Uint32 sampleSize, Uint32 sampleFlag);
 	CBox * tfdt_box(Uint64 time);
-	CBox * trun_box();
+	CBox * trun_box(int iSampleSize);
 
 private:
 	CBox *m_root;

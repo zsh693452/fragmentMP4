@@ -216,7 +216,7 @@ void CFMP4Creator::SetVideoData(char *data, int iDataSize)
 	CBox *tfdt = tfdt_box(0); // fake data
 	traf->AddChild(tfdt);
 	// moof.traf.trun
-	CBox *trun = trun_box();
+	CBox *trun = trun_box(iDataSize);
 	traf->AddChild(trun);
 	m_moof->AddChild(traf);
 	m_root->AddChild(m_moof);
@@ -277,7 +277,7 @@ CBox * CFMP4Creator::mvhd_box()
 	mvhd->SetCreationTime((Uint32)0);
 	mvhd->SetModificationTime((Uint32)0);
 	mvhd->SetTimeScale((Uint32)1000);
-	mvhd->SetDuration((Uint32)0);
+	mvhd->SetDuration((Uint32)50000);
 	mvhd->SetRate();
 	mvhd->SetVolume();
 	mvhd->SetReserved();
@@ -545,7 +545,7 @@ CBox * CFMP4Creator::traf_box()
 
 CBox * CFMP4Creator::tfhd_box(Uint32 trackId, Uint64 baseDataOffset, Uint32 desIndex, Uint32 sampleDuration, Uint32 sampleSize, Uint32 sampleFlag)
 {
-	Uint8 flag[3] = {0x00};
+	Uint8 flag[3] = {0x02, 0x00, 0x28};
 
 	CTfhdBox *tfhd = new CTfhdBox();
 	tfhd->SetVersion(0);
@@ -577,22 +577,22 @@ CBox * CFMP4Creator::tfdt_box(Uint64 time)
 }
 
 
-CBox * CFMP4Creator::trun_box()
+CBox * CFMP4Creator::trun_box(int iSampleSize)
 {
-	Uint8 flag[3] = {0x00};
+	Uint8 flag[3] = {0x00, 0x02, 0x05};
 
 	CTrunBox *trun = new CTrunBox();
 	trun->SetVersion(0);
 	trun->SetFlag(flag);
 
 	// fake data
-	trun->SetSampleCount(0);
-	trun->SetDataOffset(0);
-	trun->SetFirstSampleFlags(0);
-	trun->SetSampleDuration(0);
-	trun->SetSampleSize(0);
-	trun->SetSampleFlags(0);
-	trun->SetSampleCompositionTimeOffset(0);
+	trun->SetSampleCount(1);
+	trun->SetDataOffset(0x2f0 - 0x280);
+	trun->SetFirstSampleFlags(0x02000000);
+	//trun->SetSampleDuration(0);
+	trun->SetSampleSize((Uint32)iSampleSize);
+	//trun->SetSampleFlags(0);
+	//trun->SetSampleCompositionTimeOffset(0);
 
 	return trun;
 }
