@@ -11,6 +11,37 @@
 #pragma comment(lib, "../lib/mp4.lib")
 
 
+bool FileCheck()
+{
+	char szPath[MAX_PATH] = {0};
+	GetModuleFileNameA(NULL, (LPSTR)szPath, MAX_PATH);
+	char *p = (char *)strrchr((const char *)szPath, '\\');
+	*p = 0;
+	strcat(szPath, "\\test.mp4");
+
+	HANDLE hFile = CreateFileA(szPath, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+		NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, NULL);
+	if (hFile != INVALID_HANDLE_VALUE)
+	{
+		CloseHandle(hFile);
+		hFile = NULL;
+
+		if (!DeleteFileA(szPath))
+		{
+			printf("delete file error = %08x\n", GetLastError());
+			return false;
+		}
+	}
+	else
+	{
+		DWORD dwErr = GetLastError();
+		if (dwErr == 0x20)
+			return false;
+	}
+
+	return true;
+}
+
 void WriteFileTest(char *data, int len)
 {
 	char szPath[MAX_PATH] = {0};
@@ -20,7 +51,10 @@ void WriteFileTest(char *data, int len)
 	strcat(szPath, "\\test.mp4");
 
 	HANDLE hFile = CreateFileA(szPath, GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
-								NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+								NULL, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
+
+	int iFileSize = (int)GetFileSize(hFile, NULL);
+	SetFilePointer(hFile, 0, NULL, FILE_END);
 
 	if (hFile == INVALID_HANDLE_VALUE)
 		return;
@@ -51,9 +85,9 @@ private:
 	int m_dataLen;
 };
 
-int GetMetadata(char *sps, int &spsLen, char *pps, int &ppsLen, char *idr, int &idrLen)
+int GetMetadata(char *szFilePath, char *sps, int &spsLen, char *pps, int &ppsLen, char *idr, int &idrLen)
 {
-	FILE *pf = fopen("E:\\mp4libGithub\\testdata\\data_key_0", "r");
+	FILE *pf = fopen(szFilePath, "r");
 	if (pf == NULL)
 		return -1;
 
@@ -175,14 +209,42 @@ int _tmain(int argc, _TCHAR* argv[])
 	char *sps = new char[512];
 	char *pps = new char[512];
 	char *idr = new char[1024 * 1024];
-	GetMetadata(sps, spsLen, pps, ppsLen, idr, idrLen);
+	GetMetadata("E:\\mp4libGithub\\testdata\\data_key_0", sps, spsLen, pps, ppsLen, idr, idrLen);
+
+	if (!FileCheck())
+	{
+		printf("file check error!\n");
+		return 0;
+	}
 
 	int len = 0;
 	void *hmp4 = FMP4_Create();
-	FMP4_SetMetaData(hmp4, sps + 4, spsLen - 4, pps + 4, ppsLen - 4, NULL, 0, 1920, 1080);
-	FMP4_SetVideoData(hmp4, idr, idrLen);
-	char *data = (char *)FMP4_GetData(hmp4, &len);
-	WriteFileTest(data, len);
+	int iMetaDataSize = 0;
+	char *metaData = FMP4_SetMetaData(hmp4, sps + 4, spsLen - 4, pps + 4, ppsLen - 4, NULL, 0, 1920, 1088, &iMetaDataSize);
+	WriteFileTest(metaData, iMetaDataSize);
+	
+	for (int i = 0; i < 5; i++)
+	{
+		char szPath[MAX_PATH] = {0};
+		sprintf(szPath, "E:\\mp4libGithub\\testdata\\data_key_%d", i);
+		GetMetadata(szPath, sps, spsLen, pps, ppsLen, idr, idrLen);
+		int iMediaDataSize = 0;
+		char *mediaData = FMP4_SetVideoData(hmp4, idr + 4, idrLen - 4, &iMediaDataSize);
+		WriteFileTest(mediaData, iMediaDataSize);
+	}
+
+	/*
+	GetMetadata("E:\\mp4libGithub\\testdata\\data_key_30", sps, spsLen, pps, ppsLen, idr, idrLen);
+	iMediaDataSize = 0;
+	mediaData = FMP4_SetVideoData(hmp4, idr + 4, idrLen - 4, &iMediaDataSize);
+	WriteFileTest(mediaData, iMediaDataSize);
+
+	GetMetadata("E:\\mp4libGithub\\testdata\\data_key_60", sps, spsLen, pps, ppsLen, idr, idrLen);
+	iMediaDataSize = 0;
+	mediaData = FMP4_SetVideoData(hmp4, idr + 4, idrLen - 4, &iMediaDataSize);
+	WriteFileTest(mediaData, iMediaDataSize);
+	*/
+
 	FMP4_Release(hmp4);
 
 	delete[] sps;

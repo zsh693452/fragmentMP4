@@ -47,12 +47,14 @@ void CMvhdBox::SetTimeScale(Uint32 scale)
 
 void CMvhdBox::SetDuration(Uint32 duration)
 {
-	AddProperty("duration", (char *)&duration, GetBoxSize(), 4);
+	Uint32 v = CUnit::Uint32Reverse(duration);
+	AddProperty("duration", (char *)&v, GetBoxSize(), 4);
 }
 
 void CMvhdBox::SetDuration(Uint64 duration)
 {
-	AddProperty("duration", (char *)&duration, GetBoxSize(), 8);
+	Uint64 v = CUnit::Uint64Reverse(duration);
+	AddProperty("duration", (char *)&v, GetBoxSize(), 8);
 }
 
 void CMvhdBox::SetRate(Uint32 rate)

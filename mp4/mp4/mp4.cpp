@@ -19,16 +19,21 @@ void FMP4_Release(void *hMP4)
 	}
 }
 
-void FMP4_SetMetaData(void *hMP4, char *sps, int iSizeOfSps, char *pps, int iSizeOfPps, char *vps, int iSizeOfVps, int w, int h)
+char * FMP4_SetMetaData(void *hMP4, 
+						char *sps, int iSizeOfSps, 
+						char *pps, int iSizeOfPps, 
+						char *vps, int iSizeOfVps, 
+						int w, int h,
+						int *iMetaDataSize)
 {
 	CFMP4Creator *creator = (CFMP4Creator *)hMP4;
-	creator->SetMetaData(sps, iSizeOfSps, pps, iSizeOfPps, vps, iSizeOfVps, w, h);
+	return creator->SetMetaData(sps, iSizeOfSps, pps, iSizeOfPps, vps, iSizeOfVps, w, h, iMetaDataSize);
 }
 
-void FMP4_SetVideoData(void *hMP4, char *mediaData, int iLen)
+char * FMP4_SetVideoData(void *hMP4, char *mediaData, int iLen, int *iMediaDataSize)
 {
 	CFMP4Creator *creator = (CFMP4Creator *)hMP4;
-	creator->SetVideoData(mediaData, iLen);
+	return creator->SetVideoData(mediaData, iLen, iMediaDataSize);
 }
 
 

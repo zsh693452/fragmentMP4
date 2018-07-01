@@ -30,5 +30,11 @@ public:
 	// (optional) sample_composition_time_offset 32bit
 	void SetSampleCompositionTimeOffset(Uint32 offset);
 
+	// change data offset 
+	// this function will not increase box size
+	// iBufferOffset: box memory index for trun data offset field
+	// offset: value
+	void ChangeDataOffset(int iBufferOffset, Uint32 offset);
+
 };
 #endif

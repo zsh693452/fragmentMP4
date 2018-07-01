@@ -69,6 +69,13 @@ void CBox::BoxSizeIncrease(int size)
 		return;
 }
 
+
+void CBox::ChangeProperty(char *szProteryName, char *value, int iBufferOffset, int iValueLength)
+{
+	if (m_boxBuffer->Write(value, iBufferOffset, iValueLength) != 0)
+		return;
+}
+
 void CBox::AddProperty(char *szProteryName, char *value, int iBufferOffset, int iValueLength)
 {
 	if (m_boxBuffer->Write(value, iBufferOffset, iValueLength) != 0)

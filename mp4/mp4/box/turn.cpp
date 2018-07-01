@@ -56,3 +56,9 @@ void CTrunBox::SetSampleCompositionTimeOffset(Uint32 offset)
 	Uint32 v = CUnit::Uint32Reverse(offset);
 	AddProperty("sample_composition_time_offset", (char *)&v, GetBoxSize(), 4);
 }
+
+void CTrunBox::ChangeDataOffset(int iBufferOffset, Uint32 offset)
+{
+	Uint32 v = CUnit::Uint32Reverse(offset);
+	ChangeProperty("data_offset", (char *)&v, iBufferOffset, 4);
+}

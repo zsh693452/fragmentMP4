@@ -55,6 +55,8 @@ protected:
 	// szProteryName is unused
 	void AddProperty(char *szProteryName, char *value, int iBufferOffset, int iValueLength);
 
+	void ChangeProperty(char *szProteryName, char *value, int iBufferOffset, int iValueLength);
+
 	// Get base box header size, only include size and type
 	int GetBaseBoxHeadOffset();
 	

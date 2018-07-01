@@ -39,8 +39,26 @@ public:
 	~CFMP4Creator();
 
 	void * Create();
-	void SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize, char *VPS, int iVPSSize, int w, int h);
-	void SetVideoData(char *data, int iDataSize);
+
+	//
+	// SPS: sps data
+	// iSPSSize: sps data size, do not include start code 
+	// PPS: pps data
+	// iPPSSize: h264 pps size, do not incaluue start code
+	// VPS: vps data
+	// iVPSSize: vps data size
+	// w: video width
+	// h: video height
+	// iOutSizeSize: Size of ftyp box and moov box 
+	//
+	char * SetMetaData(char *SPS, int iSPSSize, char *PPS, int iPPSSize, char *VPS, int iVPSSize, int w, int h, int *iOutDataSize);
+
+	//
+	// data: Video data buffer
+	// iDataSize: Video data buffer size
+	// iOutDataSize: Size of moof box and mdat box
+	// 
+	char * SetVideoData(char *data, int iDataSize, int *iOutDataSize);
 	void * GetContext(int *iOutSize);
 	int GetContextSize();
 
@@ -76,11 +94,19 @@ protected:
 
 private:
 	CBox *m_root;
+	CBox *m_ftyp;
 	CBox *m_moov;
 	CBox *m_moof;
+	CBox *m_mdat;
+	CRootBox *m_moofmdatbox;
+	CRootBox *m_ftypmoovbox;
 
 	unsigned char *m_pContext;
 	int m_iContextSize;
+
+	int m_iMoovEndBoxSize;
+	int m_iTrunBoxDataOffsetFieldIndex;
+	int m_iFtypBoxSize;
 };
 
 
